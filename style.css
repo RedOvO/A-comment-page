@@ -1,0 +1,56 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    margin-top: 50px;
+    width: 800px;
+}
+
+.top{
+    width: 100%;
+    display: flex;
+    border-bottom: 2px;
+    border-style: solid;
+    border-color:white white rgb(200, 0, 0) white;
+}
+
+.title{
+    font-size: 130%;
+    font-weight: 500;
+    width: 10%;
+}
+
+.counter{
+    font-family: Georgia;
+    color: grey;
+    width: 90%;
+}
+
+.inputArea{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+}
+
+.avatar{
+    width: 10%;
+}
+
+.input{
+    width: 90%;
+}
+
+input{
+    width: 100%;
+}
+
+.commentList{
+    width: 100%;
+}
+
+.buttom{
+    width: 100%;
+}
+
