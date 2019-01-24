@@ -1,0 +1,24 @@
+{
+  "name": "a-comment-page",
+  "version": "1.0.0",
+  "description": "",
+  "main": "comment.html",
+  "scripts": {
+    "start": "live-server --port=5007 --open=comment.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RedOvO/A-comment-page.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RedOvO/A-comment-page/issues"
+  },
+  "homepage": "https://github.com/RedOvO/A-comment-page#readme",
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  },
+  "dependencies": {}
+}
