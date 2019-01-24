@@ -92,6 +92,7 @@ button:hover{
     width:100%;
     border-style: dotted;
     border-color:grey white white white;
+    border-width: 1px;
     height: 100px;
     padding: 20px 0px 0px 0px;
     display: flex;
