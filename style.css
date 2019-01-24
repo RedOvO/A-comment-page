@@ -47,11 +47,13 @@ body {
 
 textarea{
     resize: none;
-    width: 100%;
+    width: 99%;
     height: 50%;
-    border-radius: 2px;
-    padding: 3px 0px 0px 0px;
+    border-radius: 3px;
+    padding: 3px 0px 0px 1%;
     font-size: 110%;
+    color: grey;
+    border-color: rgb(168, 167, 167)
 }
 
 .comment{
@@ -78,7 +80,7 @@ textarea{
     left: 2px;
 }
 
-button:hover{
+.comment_btn:hover{
     color: blue;
 }
 
@@ -93,7 +95,7 @@ button:hover{
     border-style: dotted;
     border-color:grey white white white;
     border-width: 1px;
-    height: 100px;
+    height: 80px;
     padding: 20px 0px 0px 0px;
     display: flex;
 }
@@ -101,10 +103,6 @@ button:hover{
 .content{
     width: 75%;
     display: inline-block;
-}
-
-.buttom{
-    width: 100%;
 }
 
 a{
@@ -118,13 +116,56 @@ a{
 .date{
     color: grey;
     font-size: 80%;
-    float: right;
+    text-align: right;
+    margin-bottom: 5px;
 }
 
 .delete{
     color: grey;
     font-size: 80%;
     float: right;
+}
+
+.buttom{
+    width: 100%;
+    margin-top: 50px;
+    justify-content: center;
+    display: flex;
+}
+
+.page_change_btn{
+    cursor: pointer;
+    height: 30px;
+    width: 80px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: rgb(119, 119, 119);
+    border-width: 1px;
+    background-color: rgb(224, 224, 224);
+}
+
+.page_change_btn:hover{
+    color: rgb(200, 0, 0);
+}
+
+.page_btn, .page_btn_selected{
+    display: inline-block;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: rgb(168, 168, 168);
+    border-width: 1px;
+    padding: 2px;
+    font-size: 110%;
+}
+
+.page_btn:hover, .page_btn_selected{
+    background-color: rgb(200, 0, 0);
+    color: white;
+    border-color: rgb(161, 2, 2)
 }
 
 
