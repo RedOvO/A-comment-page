@@ -98,7 +98,7 @@ button:hover{
 }
 
 .content{
-    width: 78%;
+    width: 75%;
     display: inline-block;
 }
 
@@ -113,7 +113,7 @@ a{
 .date{
     color: grey;
     font-size: 80%;
-    width: 12%;
+    width: 15%;
 }
 
 .delete{
