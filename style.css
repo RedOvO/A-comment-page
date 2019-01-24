@@ -111,15 +111,20 @@ a{
     text-decoration: none;
 }
 
+.content_right{
+    width: 15%;
+}
+
 .date{
     color: grey;
     font-size: 80%;
-    width: 15%;
+    float: right;
 }
 
 .delete{
     color: grey;
     font-size: 80%;
+    float: right;
 }
 
 
