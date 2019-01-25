@@ -98,7 +98,7 @@ textarea::-webkit-input-placeholder{
     border-style: dotted;
     border-color:grey white white white;
     border-width: 1px;
-    height: 80px;
+    height: 90px;
     padding: 20px 0px 0px 0px;
     display: flex;
 }
