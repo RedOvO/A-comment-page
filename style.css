@@ -52,8 +52,11 @@ textarea{
     border-radius: 3px;
     padding: 3px 0px 0px 1%;
     font-size: 110%;
-    color: grey;
     border-color: rgb(168, 167, 167)
+}
+
+textarea::-webkit-input-placeholder{
+    color: grey;
 }
 
 .comment{
