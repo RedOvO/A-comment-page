@@ -148,7 +148,7 @@ a{
     color: rgb(200, 0, 0);
 }
 
-.page_btn, .page_btn_selected{
+.page_btn{
     display: inline-block;
     cursor: pointer;
     height: 30px;
