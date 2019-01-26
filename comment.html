@@ -22,10 +22,10 @@
                 <img src="img/avatar3.png" />
             </div>
             <div class="input">
-                <textarea class="textArea" placeholder="评论"  oninput="comment_counter()"></textarea>
+                <textarea class="textArea" placeholder="评论" maxlength="140" oninput="comment_counter()"></textarea>
                 <div class="comment">
                     <span class="comment_counter">0/140</span>
-                    <button class="comment_btn">评论</button>
+                    <button class="comment_btn" onclick="comment_btn()">评论</button>
                 </div>
             </div>
         </div>

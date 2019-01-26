@@ -6,3 +6,7 @@ function comment_counter(){
     console.log(length, str_number);
     str_number[0].innerText = length + '/140';
 }
+
+function comment_btn(){
+    alert('评论成功');
+}
