@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="author" content="Naluhodo">
-    <meta name="keywords" content="HTML, CSS">
-    <meta name="description" content="Font-end Learning">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="description" content="A-comment-page">
     <title>评论</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
@@ -22,10 +22,10 @@
                 <img src="img/avatar3.png" />
             </div>
             <div class="input">
-                <textarea class="textArea" placeholder="评论"  oninput="comment_counter()"></textarea>
+                <textarea class="textArea" placeholder="评论" maxlength="140" oninput="comment_counter()"></textarea>
                 <div class="comment">
                     <span class="comment_counter">0/140</span>
-                    <button class="comment_btn">评论</button>
+                    <button class="comment_btn" onclick="comment_btn()">评论</button>
                 </div>
             </div>
         </div>
