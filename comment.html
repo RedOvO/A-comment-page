@@ -15,7 +15,7 @@
     <div class="container">
         <div class="top">
             <div class="title">评论</div>
-            <div class="counter">共2条评论</div>
+            <div class="counter">共0条评论</div>
         </div>
         <div class="inputArea">
             <div class="avatar">
@@ -25,48 +25,18 @@
                 <textarea class="textArea" placeholder="评论" maxlength="140" oninput="comment_counter()"></textarea>
                 <div class="comment">
                     <span class="comment_counter">0/140</span>
-                    <button class="comment_btn" onclick="comment_btn()">评论</button>
+                    <button class="comment_btn" onclick="add_comment()">评论</button>
                 </div>
             </div>
         </div>
         <div class="commentList" id="commentList">
-            <div class="one_comment">
-                <div class="avatar">
-                    <img src="img/avatar4.png" />
-                </div>
-                <div class="content">
-                    <a href="#">葵葵:&nbsp;</a>
-                    <span>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊~</span>
-                </div>
-                <div class="content_right">
-                    <div class="date">
-                        2019年1月24日
-                    </div>
-                    <a href="#" class="delete">删除</a>
-                </div>
-            </div>
-            <div class="one_comment">
-                <div class="avatar">
-                    <img src="img/avatar5.png" />
-                </div>
-                <div class="content">
-                    <a href="#">葵葵:&nbsp;</a>
-                    <span>哈哈哈哈哈哈哈哈啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊~</span>
-                </div>
-                <div class="content_right">
-                    <div class="date">
-                        2019年1月24日
-                    </div>
-                    <a href="#" class="delete">删除</a>
-                </div>
-            </div>
+            <!--评论列表-->
         </div>
         <div class="buttom">
             <div class="page_device">
-                <button class="page_change_btn">
-                    < 上一页</button> <button class="page_btn">1
-                </button>
-                <button class="page_btn page_btn_selected">2</button>
+                <button class="page_change_btn">< 上一页</button> 
+                <button class="page_btn page_btn_selected">1</button>
+                <button class="page_btn">2</button>
                 <button class="page_btn">3</button>
                 <button class="page_btn">4</button>
                 ...
@@ -76,10 +46,7 @@
         </div>
     </div>
 </body>
+<script src="db.js"></script>
 <script src="app.js"></script>
-<script>
-    var inputContent = document.getElementsByClassName("textArea");
-
-</script>
 
 </html>
