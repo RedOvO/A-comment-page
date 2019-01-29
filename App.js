@@ -9,12 +9,16 @@ console.log(JSON.stringify(user));
     "avatarURL":"img/avatar6.png"
 }*/
 
-window.onload = function loadList() {
+window.onload = function firstLoad() {
     db.getCommentList({ page: 1, limit: 10 }).then((list) => {
         list.forEach(people => {
             loadComment(people);
         });
     });
+    db.getCommentTotal().then((total) => {
+        let counter =  document.getElementsByClassName('counter');
+        counter[0].innerText = `共${total}条评论`
+    })
 }
 
 function loadComment(people) {
@@ -114,9 +118,5 @@ function formatDate(time) {
         let day = date.getDate();
         return `${year}年${month}月${day}日`;
     }
-            
-
-
-    
 }
 
