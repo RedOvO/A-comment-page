@@ -9,8 +9,20 @@ console.log(JSON.stringify(user));
     "avatarURL":"img/avatar6.png"
 }*/
 
-window.onload = function firstLoad() {
-    db.getCommentList({ page: 1, limit: 10 }).then((list) => {
+window.onload = loadList(1);
+
+function loadList(page){
+    console.log('转跳至第' + page + '页');
+    let list = document.getElementById('commentList');
+    let pageDevice = document.getElementsByClassName('page_device');
+    list.innerHTML = '';
+    pageDevice[0].innerHTML = '';
+    let obj = {
+        page: 0,
+        limit: 10,
+    }
+    obj.page = page;
+    db.getCommentList(obj).then((list) => {
         list.forEach(people => {
             loadComment(people);
         });
@@ -18,6 +30,7 @@ window.onload = function firstLoad() {
     db.getCommentTotal().then((total) => {
         let counter =  document.getElementsByClassName('counter');
         counter[0].innerText = `共${total}条评论`
+        loadButton(page, total);
     })
 }
 
@@ -41,6 +54,100 @@ function loadComment(people) {
             </div>
             <a href="#" class="delete" onclick="delete_comment(${ people.user.id})">删除</a>
         </div>`
+}
+
+function loadButton(page, total){
+    let pageDevice = document.getElementsByClassName('page_device');
+    totalPage = Math.ceil(total / 10);
+    let buttons = new Array(5);
+    
+    /* 上一页按钮 */
+    let lastPage = document.createElement('button');
+    lastPage.className = 'page_change_btn';
+    lastPage.innerText = '< 上一页'
+    lastPage.addEventListener('click', () => {
+        loadList(page - 1);
+    }, true);
+
+    /* 下一页按钮 */
+    let nextPage = document.createElement('button');
+    nextPage.className = 'page_change_btn';
+    nextPage.innerText = '下一页 >'
+    nextPage.addEventListener('click', () => {
+        loadList(page + 1);
+    }, true);
+
+    pageDevice[0].appendChild(lastPage);
+
+    /* 添加五个页码按钮 */
+    for(let i = 0; i < 5; i++){
+        buttons[i] = document.createElement('button');
+        buttons[i].className = 'page_btn'
+        pageDevice[0].appendChild(buttons[i]);
+    }
+
+    buttons[0].innerText = '1';
+    buttons[0].addEventListener('click', () => {
+        loadList(1);
+    }, true);
+    buttons[4].innerText = totalPage.toString();
+    buttons[4].addEventListener('click', () => {
+        loadList(totalPage);
+    }, true);
+    for(let i = 1; i < 4; i++){
+        if(page == 1){
+            buttons[i].innerText = (page - 1 + i).toString();
+        } else if(page == totalPage){
+            buttons[i].innerText = (page - 3 + i).toString();
+        } else {
+            buttons[i].innerText = (page - 2 + i).toString();
+        }
+        if(buttons[i].innerText == page.toString()){
+            buttons[i].className = 'page_btn page_btn_selected';
+        }
+        if(parseInt(buttons[i]) > totalPage){
+            buttons[i].style.display = 'none';
+        }
+        buttons[i].addEventListener('click', () => {
+            loadList(parseInt(buttons[i].innerText));
+        });
+    }
+    
+    pageDevice[0].appendChild(nextPage);
+
+    /* 最小页与首页重复 或 最大页与尾页重复 隐藏首页或尾页 */
+    if((parseInt(buttons[1].innerText) - parseInt(buttons[0].innerText)) <= 0){
+        buttons[0].style.display = 'none';
+    }
+    if((parseInt(buttons[4].innerText) - parseInt(buttons[3].innerText)) <= 0){
+        buttons[4].style.display = 'none';
+    }
+    /* 最小页与首页间隔大于1 或 最大页与尾页间隔大于1 添加... */
+    if((parseInt(buttons[1].innerText) - parseInt(buttons[0].innerText)) > 1){
+        let span = document.createElement('span');
+        span.innerText = '...';
+        pageDevice[0].insertBefore(span, buttons[1]);
+    }
+    if((parseInt(buttons[4].innerText) - parseInt(buttons[3].innerText)) > 1){
+        let span = document.createElement('span');
+        span.innerText = '...';
+        pageDevice[0].insertBefore(span, buttons[4]);
+    }
+
+    for(let i = 1; i < 4; i++){
+        if(buttons[i].className == 'page_btn page_btn_selected'){
+            /* 当前为第一页或为最后一页时，要disabled上一页或下一页按钮 */
+            if(buttons[i].innerText == '1'){
+                lastPage.disabled = true;
+                lastPage.style.cursor = 'initial';
+            }
+            else if(buttons[i].innerText == totalPage.toString()){
+                nextPage.disabled = true;
+                nextPage.style.cursor = 'initial';
+            }
+        }
+    }
+
 }
 
 function comment_counter() {
@@ -100,7 +207,6 @@ function formatDate(time) {
     let timeNow = new Date();
     let differ = timeNow.getTime() - time;
     differ = Math.floor(differ/1000);
-    console.log(differ);
     if(differ < 1){
         return '刚刚';
     } else if(differ < 60){
