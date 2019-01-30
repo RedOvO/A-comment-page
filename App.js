@@ -69,7 +69,7 @@ function loadComment(people) {
             <div class="date">
                 ${ formatDate(people.time) }
             </div>
-            <a href="#" class="delete" onclick="delete_comment(${ people.id})">删除</a>
+            <a href="#" class="delete" onclick="delete_comment('${people.id}')">删除</a>
         </div>`
 }
 
@@ -207,9 +207,7 @@ function add_comment() {
 
 /* 删除评论 */
 function delete_comment(delete_id) {
-    let id = delete_id.id;
-    console.log(delete_id);
-    db.removeComment(id).then((data) => {
+    db.removeComment(delete_id).then(() => {
         console.log('删除评论：' + (id));
         loadList(pageNow);
     }).catch((err) => {
