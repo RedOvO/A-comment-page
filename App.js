@@ -13,9 +13,11 @@ console.log(JSON.stringify(user));
 const avatar = document.getElementById('avatar');
 avatar.src = user.avatarURL;
 
+/* 初始加载页面，当前页面为1，并加载第一页的评论列表 */
 var pageNow = 1;
 window.onload = loadList(1);
 
+/* 可在控制台监听评论的增加与删除 */
 db.on('listchange', function(event){
     console.log(event.action);
 });
@@ -33,13 +35,13 @@ function loadList(page){
         limit: 10,
     }
     obj.page = page;
-    /* 获取评论列表 */
+    /* 获取评论列表并加载至页面 */
     db.getCommentList(obj).then((list) => {
         list.forEach(people => {
             loadComment(people);
         });
     });
-    /* 获取评论条数 */
+    /* 获取评论条数与分页器 */
     db.getCommentTotal().then((total) => {
         let counter =  document.getElementsByClassName('counter');
         counter[0].innerText = `共${total}条评论`
@@ -47,6 +49,7 @@ function loadList(page){
     })
 }
 
+/* 加载评论 */
 function loadComment(people) {
     let child_div = document.createElement('div');
     let parent_div = document.getElementById('commentList');
@@ -70,6 +73,7 @@ function loadComment(people) {
         </div>`
 }
 
+/* 加载分页器 */
 function loadButton(page, total){
     let pageDevice = document.getElementsByClassName('page_device');
     totalPage = Math.ceil(total / 10);
@@ -113,19 +117,27 @@ function loadButton(page, total){
         loadList(totalPage);
     }, true);
     for(let i = 1; i < 4; i++){
+        /* 当前页为首页 */
         if(page == 1){
             buttons[i].innerText = (page - 1 + i).toString();
-        } else if(page == totalPage){
+        } 
+        /* 当前页为尾页 */
+        else if(page == totalPage){
             buttons[i].innerText = (page - 3 + i).toString();
-        } else {
+        }
+        /* 当前页为中间页 */
+        else {
             buttons[i].innerText = (page - 2 + i).toString();
         }
+        /* 更换当前页按钮样式 */
         if(buttons[i].innerText == page.toString()){
             buttons[i].className = 'page_btn page_btn_selected';
         }
+        /* 隐藏大于总页数的页码，如最大为2页，数组中第四项可能为3，此时隐藏第四项 */
         if(parseInt(buttons[i]) > totalPage){
             buttons[i].style.display = 'none';
         }
+        /* 为分页器添加按钮事件 */
         buttons[i].addEventListener('click', () => {
             pageNow = parseInt(buttons[i].innerText)
             loadList(parseInt(buttons[i].innerText));
@@ -169,13 +181,7 @@ function loadButton(page, total){
 
 }
 
-function comment_counter() {
-    let content = document.getElementsByTagName('textarea');
-    let length = content[0].value.length.toString();
-    let str_number = document.getElementsByClassName('comment_counter');
-    str_number[0].innerText = length + '/140';
-}
-
+/* 增加评论 */
 function add_comment() {
     let content = document.getElementsByTagName('textarea');
     let length = content[0].value.length.toString();
@@ -199,6 +205,7 @@ function add_comment() {
 
 }
 
+/* 删除评论 */
 function delete_comment(delete_id) {
     let id = delete_id.id;
     console.log(delete_id);
@@ -210,10 +217,20 @@ function delete_comment(delete_id) {
     });
 }
 
+/* 评论输入框计数 */
+function comment_counter() {
+    let content = document.getElementsByTagName('textarea');
+    let length = content[0].value.length.toString();
+    let str_number = document.getElementsByClassName('comment_counter');
+    str_number[0].innerText = length + '/140';
+}
+
+/* 格式化时间 */
 function formatDate(time) {
     let timeNow = new Date();
     let differ = timeNow.getTime() - time;
     differ = Math.floor(differ/1000);
+    /* 按秒分时天处理刚发的评论，最多显示为10天，10天前发的评论均显示日期+时间 */
     if(differ < 1){
         return '刚刚';
     } else if(differ < 60){
